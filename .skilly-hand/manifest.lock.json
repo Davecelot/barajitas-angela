@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "generatedAt": "2026-05-10T22:48:56.351Z",
+  "cwd": "/Users/diegovillarroel/Desktop/barajitas-angela",
+  "agents": [
+    "standard",
+    "codex",
+    "claude"
+  ],
+  "skills": [
+    "accessibility-audit",
+    "agents-root-orchestrator",
+    "figma-mcp-0to1",
+    "frontend-design",
+    "gsap-animation",
+    "motion-animation",
+    "output-optimizer",
+    "project-security",
+    "project-teacher",
+    "prompt-engineering",
+    "react-guidelines",
+    "review-rangers",
+    "roaster",
+    "skill-creator",
+    "spec-driven-development",
+    "test-driven-development",
+    "token-optimizer",
+    "user-story-crafting"
+  ],
+  "detections": [
+    {
+      "technology": "nodejs",
+      "confidence": 1,
+      "reasons": [
+        "Found package.json"
+      ],
+      "recommendedSkillIds": [
+        "token-optimizer",
+        "spec-driven-development",
+        "review-rangers",
+        "project-teacher"
+      ]
+    },
+    {
+      "technology": "vite",
+      "confidence": 1,
+      "reasons": [
+        "Found vite.config.*"
+      ],
+      "recommendedSkillIds": [
+        "frontend-design"
+      ]
+    },
+    {
+      "technology": "react",
+      "confidence": 0.95,
+      "reasons": [
+        "Dependency \"react\" found in package.json"
+      ],
+      "recommendedSkillIds": [
+        "accessibility-audit",
+        "react-guidelines",
+        "frontend-design"
+      ]
+    },
+    {
+      "technology": "typescript",
+      "confidence": 0.95,
+      "reasons": [
+        "Found tsconfig.json"
+      ],
+      "recommendedSkillIds": [
+        "token-optimizer"
+      ]
+    },
+    {
+      "technology": "tailwindcss",
+      "confidence": 0.9,
+      "reasons": [
+        "Dependency \"tailwindcss\" found in package.json"
+      ],
+      "recommendedSkillIds": [
+        "accessibility-audit",
+        "frontend-design"
+      ]
+    }
+  ],
+  "managedFiles": [
+    "/Users/diegovillarroel/Desktop/barajitas-angela/AGENTS.md",
+    "/Users/diegovillarroel/Desktop/barajitas-angela/CLAUDE.md"
+  ],
+  "managedSymlinks": [
+    "/Users/diegovillarroel/Desktop/barajitas-angela/skills",
+    "/Users/diegovillarroel/Desktop/barajitas-angela/.codex/skills",
+    "/Users/diegovillarroel/Desktop/barajitas-angela/.claude/skills"
+  ],
+  "managedNativeFiles": [
+    "/Users/diegovillarroel/Desktop/barajitas-angela/.codex/rules/skilly-hand.md",
+    "/Users/diegovillarroel/Desktop/barajitas-angela/.claude/rules/skilly-hand.md"
+  ],
+  "nativeProfiles": {
+    "standard": {
+      "status": "not-supported",
+      "mode": null,
+      "managedFiles": [],
+      "target": null
+    },
+    "codex": {
+      "status": "configured",
+      "mode": "rule_file",
+      "managedFiles": [
+        "/Users/diegovillarroel/Desktop/barajitas-angela/.codex/rules/skilly-hand.md"
+      ],
+      "target": ".codex/rules/skilly-hand.md"
+    },
+    "claude": {
+      "status": "configured",
+      "mode": "rule_file",
+      "managedFiles": [
+        "/Users/diegovillarroel/Desktop/barajitas-angela/.claude/rules/skilly-hand.md"
+      ],
+      "target": ".claude/rules/skilly-hand.md"
+    }
+  },
+  "backups": {}
+}
