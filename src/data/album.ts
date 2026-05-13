@@ -307,6 +307,36 @@ export const teams: Team[] = [
     'Federico Viñas', 'Rodrigo Aguirre', 'Facundo Pellistri',
   ]),
 
+  // === GRUPO I ===
+  makeTeam('fra', 'Francia', 'France', '🇫🇷', 'I', [
+    'Jugador 2', 'Jugador 3', 'William Saliba', 'Jules Koundé',
+    'Jugador 6', 'Jugador 7', 'Lucas Digne', 'Jugador 9',
+    'Jugador 10', 'Jugador 11', 'Adrien Rabiot',
+    'Jugador 14', 'Jugador 15', 'Jugador 16', 'Jugador 17',
+    'Kingsley Coman', 'Jugador 19', 'Jugador 20',
+  ]),
+  makeTeam('sen', 'Senegal', 'Senegal', '🇸🇳', 'I', [
+    'Jugador 2', 'Yehvann Diouf', 'Jugador 4', 'Abdoulaye Seck',
+    'Kalidou Koulibaly', 'Jugador 7', 'Kalidou Koulibaly', 'Jugador 9',
+    'Jugador 10', 'Pape Gueye', 'Habib Diarra',
+    'Jugador 14', 'Jugador 15', 'Jugador 16', 'Jugador 17',
+    'Iliman Ndiaye', 'Jugador 19', 'Jugador 20',
+  ]),
+  makeTeam('nor', 'Noruega', 'Norway', '🇳🇴', 'I', [
+    'Jugador 2', 'Jugador 3', 'Jugador 4', 'Jugador 5',
+    'Jugador 6', 'Jugador 7', 'Jugador 8', 'Jugador 9',
+    'Jugador 10', 'Jugador 11', 'Jugador 12',
+    'Jugador 14', 'Jugador 15', 'Jugador 16', 'Jugador 17',
+    'Jugador 18', 'Jugador 19', 'Jugador 20',
+  ]),
+  makeTeam('irq', 'Irak', 'Iraq', '🇮🇶', 'I', [
+    'Jugador 2', 'Rebin Sulaka', 'Hussein Ali', 'Jugador 5',
+    'Jugador 6', 'Zaid Tahseen', 'Manaf Younis', 'Zidane Iqbal',
+    'Jugador 10', 'Ibrahim Bayesh', 'Ali Jasim',
+    'Youssef Amyn', 'Aimar Sher', 'Jugador 16', 'Osama Rashid',
+    'Jugador 18', 'Aymen Hussein', 'Jugador 20',
+  ]),
+
   // === GRUPO J ===
   makeTeam('arg', 'Argentina', 'Argentina', '🇦🇷', 'J', [
     'Emiliano Martinez', 'Nahuel Molina', 'Cristian Romero', 'Nicolas Otamendi',
@@ -465,6 +495,15 @@ export const defaultCollected = new Set<string>([
   'esp-13', 'esp-14', 'esp-15', 'esp-18', 'esp-19',
   // CPV
   'cpv-2', 'cpv-7', 'cpv-8',
+  // FRA
+  'fra-2', 'fra-3', 'fra-6', 'fra-7', 'fra-9', 'fra-10',
+  'fra-11', 'fra-14', 'fra-15', 'fra-16', 'fra-17', 'fra-19',
+  // SEN
+  'sen-1', 'sen-4', 'sen-7', 'sen-9', 'sen-10',
+  'sen-14', 'sen-15', 'sen-16', 'sen-17',
+  // IRQ
+  'irq-1', 'irq-2', 'irq-5', 'irq-6', 'irq-10',
+  'irq-16', 'irq-18', 'irq-20',
   // JOR
   'jor-4', 'jor-5', 'jor-8', 'jor-9', 'jor-12', 'jor-13',
   'jor-16', 'jor-18', 'jor-19', 'jor-20',

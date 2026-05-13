@@ -80,9 +80,9 @@ blocks the printed slot.
 | `1000435258` | Group H, Cabo Verde page | Explicit team provenance |
 | `1000435259` | Group H, Uruguay page | Traceability added |
 | `1000435260` | Group H, Uruguay page and match-result area | Traceability added |
-| `1000435261` | Group H, Uruguay continuation / Group J transition | Traceability added |
-| `1000435262` | Group J, Jordan page | Traceability added |
-| `1000435263` | Group J, Jordan continuation | Traceability added |
+| `1000435261` | Group H, Uruguay continuation / Group I France page | Traceability added |
+| `1000435262` | Group I Senegal page | Traceability added |
+| `1000435263` | Group I Iraq page / Group J transition | Traceability added |
 | `1000435264` | Group K, Portugal page | Traceability added |
 | `1000435265` | Group K, Portugal continuation | Traceability added |
 | `1000435266` | Group K, Uzbekistan page | Traceability added |
@@ -429,9 +429,49 @@ blocks the printed slot.
 - CPV 7 - Wagner Pina
 - CPV 8 - Joao Paulo
 
+### Group I
+
+**France (FRA)** - photo `1000435261`
+
+- FRA 2 - slot known, name from pasted sticker
+- FRA 3 - slot known, name from pasted sticker
+- FRA 6 - slot known, name from pasted sticker
+- FRA 7 - slot known, name from pasted sticker
+- FRA 9 - slot known, name from pasted sticker
+- FRA 10 - slot known, name from pasted sticker
+- FRA 11 - slot known, name from pasted sticker
+- FRA 14 - slot known, name from pasted sticker
+- FRA 15 - slot known, name from pasted sticker
+- FRA 16 - slot known, name from pasted sticker
+- FRA 17 - slot known, name from pasted sticker
+- FRA 19 - slot known, name from pasted sticker
+
+**Senegal (SEN)** - photo `1000435262`
+
+- SEN 1 - Badge
+- SEN 4 - slot known, name from pasted sticker
+- SEN 7 - slot known, name from pasted sticker
+- SEN 9 - slot known, name from pasted sticker
+- SEN 10 - slot known, name from pasted sticker
+- SEN 14 - slot known, name from pasted sticker
+- SEN 15 - slot known, name from pasted sticker
+- SEN 16 - slot known, name from pasted sticker
+- SEN 17 - slot known, name from pasted sticker
+
+**Iraq (IRQ)** - photo `1000435263`
+
+- IRQ 1 - Badge
+- IRQ 2 - slot known, name from pasted sticker
+- IRQ 5 - slot known, name from pasted sticker
+- IRQ 6 - slot known, name from pasted sticker
+- IRQ 10 - slot known, name from pasted sticker
+- IRQ 16 - slot known, name from pasted sticker
+- IRQ 18 - slot known, name from pasted sticker
+- IRQ 20 - slot known, name from pasted sticker
+
 ### Group J
 
-**Jordan (JOR)** - photos `1000435262`, `1000435263`
+**Jordan (JOR)** - photo `1000435263`
 
 - JOR 4 - Mohammad Abu Hashish
 - JOR 5 - Yictam Al-Arab
@@ -889,6 +929,50 @@ blocks the printed slot.
 - CPV 18 - Dailon Livramento
 - CPV 19 - Willy Semedo
 - CPV 20 - Bebe
+
+### Group I
+
+**France (FRA)**
+
+- FRA 1 - Badge
+- FRA 4 - William Saliba
+- FRA 5 - Jules Kounde
+- FRA 8 - Lucas Digne
+- FRA 12 - Adrien Rabiot
+- FRA 13 - We Are France
+- FRA 18 - Kingsley Coman
+
+**Senegal (SEN)**
+
+- SEN 2 - slot known, name unreadable
+- SEN 3 - Yehvann Diouf
+- SEN 5 - Abdoulaye Seck
+- SEN 6 - Kalidou Koulibaly
+- SEN 8 - Kalidou Koulibaly
+- SEN 11 - Pape Gueye
+- SEN 12 - Habib Diarra
+- SEN 13 - We Are Senegal
+- SEN 18 - Iliman Ndiaye
+
+**Iraq (IRQ)**
+
+- IRQ 3 - Rebin Sulaka
+- IRQ 4 - Hussein Ali
+- IRQ 7 - Zaid Tahseen
+- IRQ 8 - Manaf Younis
+- IRQ 9 - Zidane Iqbal
+- IRQ 11 - Ibrahim Bayesh
+- IRQ 12 - Ali Jasim
+- IRQ 13 - We Are Iraq
+- IRQ 14 - Youssef Amyn
+- IRQ 15 - Aimar Sher
+- IRQ 17 - Osama Rashid
+- IRQ 19 - Aymen Hussein
+
+**Norway (NOR)**
+
+- NOR page not visible in current photo set; Group I table confirms Norway is in
+  the album.
 
 ### Group J
 

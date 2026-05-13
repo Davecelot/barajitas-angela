@@ -30,6 +30,10 @@ const codeMap = {
   NZL: 'nzl',
   ESP: 'esp',
   CPV: 'cpv',
+  FRA: 'fra',
+  SEN: 'sen',
+  NOR: 'nor',
+  IRQ: 'irq',
   JOR: 'jor',
   UZB: 'uzb',
   COL: 'col',
@@ -72,11 +76,11 @@ const missingFromSeed = [...documentedPlaced].filter((id) => !defaultCollected.h
 const unknownSeeded = [...defaultCollected].filter((id) => !knownIds.has(id)).sort()
 const seededFwc = [...defaultCollected].filter((id) => id.startsWith('fwc-')).sort()
 
-if (documentedPlaced.size !== 299) {
-  errors.push(`Expected 299 documented placed stickers, found ${documentedPlaced.size}.`)
+if (documentedPlaced.size !== 328) {
+  errors.push(`Expected 328 documented placed stickers, found ${documentedPlaced.size}.`)
 }
-if (defaultCollected.size !== 299) {
-  errors.push(`Expected defaultCollected.size to be 299, found ${defaultCollected.size}.`)
+if (defaultCollected.size !== 328) {
+  errors.push(`Expected defaultCollected.size to be 328, found ${defaultCollected.size}.`)
 }
 if (missingFromApp.length > 0) {
   errors.push(`Documented placed IDs missing from app stickers: ${missingFromApp.join(', ')}`)
