@@ -5,6 +5,7 @@ import { SearchBar } from './components/SearchBar'
 import { TeamSection } from './components/TeamSection'
 import { StickerCard } from './components/StickerCard'
 import { AuthButton } from './components/AuthButton'
+import { BackupButton } from './components/BackupButton'
 import { formatMissing, formatRepeated } from './utils/share'
 import { useAuth } from './hooks/useAuth'
 
@@ -20,6 +21,7 @@ export default function App() {
     incrementRepeated,
     decrementRepeated,
     repeatedCount,
+    replaceAll,
   } = useAlbum()
   const [query, setQuery] = useState('')
   const [tab, setTab] = useState<Tab>('todas')
@@ -53,17 +55,21 @@ export default function App() {
 
   const showFullAlbum = tab === 'todas' && !query.trim()
 
-  const copyText = async (text: string, label = '¡Copiado!') => {
-    try {
-      await navigator.clipboard.writeText(text)
-      setToast(label)
-    } catch {
-      setToast('No se pudo copiar')
-    }
+  const showToast = (message: string) => {
+    setToast(message)
     if (toastTimeout.current !== null) {
       window.clearTimeout(toastTimeout.current)
     }
     toastTimeout.current = window.setTimeout(() => setToast(null), 2000)
+  }
+
+  const copyText = async (text: string, label = '¡Copiado!') => {
+    try {
+      await navigator.clipboard.writeText(text)
+      showToast(label)
+    } catch {
+      showToast('No se pudo copiar')
+    }
   }
 
   const teamProps = {
@@ -101,13 +107,29 @@ export default function App() {
                     Album
                   </span>
                 </div>
-                <div className="md:hidden">
+                <div className="flex items-center gap-2 md:hidden">
+                  <BackupButton
+                    collected={collected}
+                    repeated={repeated}
+                    onImport={replaceAll}
+                    canEdit={canEdit}
+                    onSuccess={showToast}
+                    onError={showToast}
+                  />
                   <AuthButton user={user} canEdit={canEdit} onLogin={login} onLogout={logout} />
                 </div>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <div className="hidden md:block">
+              <div className="hidden items-center gap-2 md:flex">
+                <BackupButton
+                  collected={collected}
+                  repeated={repeated}
+                  onImport={replaceAll}
+                  canEdit={canEdit}
+                  onSuccess={showToast}
+                  onError={showToast}
+                />
                 <AuthButton user={user} canEdit={canEdit} onLogin={login} onLogout={logout} />
               </div>
               <div className="grid flex-1 grid-cols-[1fr_auto] items-center gap-3 rounded-[var(--album-radius)] border-2 border-[var(--album-line)] bg-[var(--album-surface)] px-3 py-2 md:min-w-72">

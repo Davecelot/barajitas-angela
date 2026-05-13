@@ -106,5 +106,21 @@ export function useAlbum() {
     [repeated],
   )
 
-  return { collected, toggle, progress, repeated, incrementRepeated, decrementRepeated, repeatedCount }
+  const replaceAll = useCallback((next: { collected: string[]; repeated: Record<string, number> }) => {
+    const nextCollected = new Set(
+      (next.collected ?? []).filter((id): id is string => typeof id === 'string'),
+    )
+    const nextRepeated: Record<string, number> = {}
+    for (const [id, count] of Object.entries(next.repeated ?? {})) {
+      if (typeof id === 'string' && typeof count === 'number' && Number.isFinite(count) && count > 0) {
+        nextRepeated[id] = Math.floor(count)
+      }
+    }
+    saveCollected(nextCollected)
+    saveRepeated(nextRepeated)
+    setCollected(nextCollected)
+    setRepeated(nextRepeated)
+  }, [])
+
+  return { collected, toggle, progress, repeated, incrementRepeated, decrementRepeated, repeatedCount, replaceAll }
 }
