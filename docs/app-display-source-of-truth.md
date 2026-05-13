@@ -23,8 +23,13 @@ collection data. This document governs display behavior built from that data.
 - The app header includes a login control aligned with the title area. Logged-out
   visitors and normal users can browse, search, and copy lists but cannot edit
   collected or repeated sticker state.
-- Admin login state is simulated from static users in `src/data/users.json` and
-  persisted in browser storage; it is not a server-side security boundary.
+- Authentication is performed against the Cloudflare Worker at `VITE_API_URL`
+  (POST /api/login), which validates the username/password against PBKDF2 hashes
+  stored in D1 and returns a signed JWT. The JWT is persisted in localStorage
+  and sent on subsequent requests via the `Authorization: Bearer` header.
+  Logged-out visitors and normal users can browse but cannot edit; only the
+  admin role passes the server-side `role === 'admin'` check on
+  `PUT /api/album`. There is no client-side trust boundary.
 - The global missing-list copy action copies missing team stickers for every
   incomplete team.
 - The repeated-list copy action appears when at least one sticker has a repeated

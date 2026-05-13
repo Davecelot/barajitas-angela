@@ -1,53 +1,47 @@
-import { useCallback, useMemo, useState } from 'react'
-import users from '../data/users.json'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { AUTH_CLEARED_EVENT, apiFetch, clearAuth, getStoredUser, setStoredUser, setToken } from '../lib/api'
 
 type Role = 'admin' | 'normal'
 
-type User = {
+type SessionUser = {
   id: string
   name: string
-  username: string
-  password: string
   role: Role
 }
 
-type SessionUser = Pick<User, 'id' | 'name' | 'role'>
-
-const AUTH_KEY = 'barajitas-auth-user'
-const staticUsers = users as User[]
-
-function loadSession(): SessionUser | null {
-  try {
-    const raw = localStorage.getItem(AUTH_KEY)
-    if (!raw) return null
-    const parsed = JSON.parse(raw) as Partial<SessionUser>
-    const user = staticUsers.find((candidate) => candidate.id === parsed.id)
-    return user ? { id: user.id, name: user.name, role: user.role } : null
-  } catch {
-    return null
-  }
+interface LoginResponse {
+  token: string
+  user: SessionUser
 }
 
 export function useAuth() {
-  const [user, setUser] = useState<SessionUser | null>(loadSession)
+  const [user, setUser] = useState<SessionUser | null>(() => getStoredUser<SessionUser>())
 
-  const login = useCallback((username: string, password: string) => {
-    const normalizedUsername = username.trim().toLowerCase()
-    const match = staticUsers.find(
-      (candidate) => candidate.username.toLowerCase() === normalizedUsername && candidate.password === password,
-    )
-
-    if (!match) return false
-
-    const sessionUser = { id: match.id, name: match.name, role: match.role }
-    localStorage.setItem(AUTH_KEY, JSON.stringify(sessionUser))
-    setUser(sessionUser)
-    return true
+  const login = useCallback(async (username: string, password: string): Promise<boolean> => {
+    try {
+      const res = await apiFetch<LoginResponse>('/api/login', {
+        method: 'POST',
+        auth: false,
+        body: { username, password },
+      })
+      setToken(res.token)
+      setStoredUser(res.user)
+      setUser(res.user)
+      return true
+    } catch {
+      return false
+    }
   }, [])
 
   const logout = useCallback(() => {
-    localStorage.removeItem(AUTH_KEY)
+    clearAuth()
     setUser(null)
+  }, [])
+
+  useEffect(() => {
+    const onCleared = () => setUser(null)
+    window.addEventListener(AUTH_CLEARED_EVENT, onCleared)
+    return () => window.removeEventListener(AUTH_CLEARED_EVENT, onCleared)
   }, [])
 
   const canEdit = user?.role === 'admin'

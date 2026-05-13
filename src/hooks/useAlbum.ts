@@ -1,93 +1,145 @@
-import { useState, useCallback, useMemo } from 'react'
-import { totalStickers, defaultCollected } from '../data/album'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { totalStickers } from '../data/album'
+import { ApiError, apiFetch } from '../lib/api'
 
-const COLLECTED_KEY = 'barajitas-collected'
-const REPEATED_KEY = 'barajitas-repeated'
-const SEEDED_KEY = 'barajitas-seeded-v1'
+type Repeated = Record<string, number>
 
-function loadCollected(): Set<string> {
-  try {
-    if (!localStorage.getItem(SEEDED_KEY)) {
-      const existing = localStorage.getItem(COLLECTED_KEY)
-      if (existing) {
-        // User has prior data (possibly old-format IDs) — mark seeded without overwriting
-        localStorage.setItem(SEEDED_KEY, '1')
-        const parsed: unknown = JSON.parse(existing)
-        const ids = Array.isArray(parsed) ? (parsed as unknown[]).filter((x): x is string => typeof x === 'string') : []
-        return new Set(ids)
+interface AlbumResponse {
+  collected: string[]
+  repeated: Repeated
+  updatedAt: number
+  updatedBy: string | null
+}
+
+interface UseAlbumOptions {
+  canEdit: boolean
+}
+
+type SyncStatus = 'idle' | 'loading' | 'saving' | 'error' | 'offline'
+
+const REFETCH_ON_FOCUS_MIN_INTERVAL_MS = 5_000
+
+export function useAlbum({ canEdit }: UseAlbumOptions) {
+  const [collected, setCollected] = useState<Set<string>>(new Set())
+  const [repeated, setRepeated] = useState<Repeated>({})
+  const [status, setStatus] = useState<SyncStatus>('loading')
+  const [updatedAt, setUpdatedAt] = useState<number | null>(null)
+  const lastRefetchRef = useRef(0)
+  const saveSeqRef = useRef(0)
+  // Refs mirror the latest state so callbacks can read sibling state without
+  // closing over stale snapshots from a previous render.
+  const collectedRef = useRef(collected)
+  const repeatedRef = useRef(repeated)
+  collectedRef.current = collected
+  repeatedRef.current = repeated
+
+  const applyServerState = useCallback((data: AlbumResponse) => {
+    setCollected(new Set(data.collected))
+    setRepeated(data.repeated ?? {})
+    setUpdatedAt(data.updatedAt)
+  }, [])
+
+  const refetch = useCallback(async () => {
+    setStatus((s) => (s === 'idle' || s === 'offline' ? 'loading' : s))
+    try {
+      const data = await apiFetch<AlbumResponse>('/api/album', { method: 'GET' })
+      applyServerState(data)
+      lastRefetchRef.current = Date.now()
+      setStatus('idle')
+    } catch (err) {
+      if (err instanceof ApiError && err.status === 401) {
+        setStatus('idle')
+        return
       }
-      // Fresh install — pre-populate from photo analysis
-      const seeded = new Set(defaultCollected)
-      localStorage.setItem(COLLECTED_KEY, JSON.stringify([...seeded]))
-      localStorage.setItem(SEEDED_KEY, '1')
-      return seeded
+      setStatus('offline')
     }
-    const raw = localStorage.getItem(COLLECTED_KEY)
-    if (!raw) return new Set()
-    const parsed: unknown = JSON.parse(raw)
-    const ids = Array.isArray(parsed) ? (parsed as unknown[]).filter((x): x is string => typeof x === 'string') : []
-    return new Set(ids)
-  } catch {
-    return new Set()
-  }
-}
+  }, [applyServerState])
 
-function saveCollected(set: Set<string>) {
-  localStorage.setItem(COLLECTED_KEY, JSON.stringify([...set]))
-}
+  useEffect(() => {
+    void refetch()
+  }, [refetch])
 
-function loadRepeated(): Record<string, number> {
-  try {
-    const raw = localStorage.getItem(REPEATED_KEY)
-    return raw ? (JSON.parse(raw) as Record<string, number>) : {}
-  } catch {
-    return {}
-  }
-}
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.visibilityState !== 'visible') return
+      if (Date.now() - lastRefetchRef.current < REFETCH_ON_FOCUS_MIN_INTERVAL_MS) return
+      void refetch()
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+    window.addEventListener('focus', onVisibility)
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibility)
+      window.removeEventListener('focus', onVisibility)
+    }
+  }, [refetch])
 
-function saveRepeated(rec: Record<string, number>) {
-  localStorage.setItem(REPEATED_KEY, JSON.stringify(rec))
-}
+  const persist = useCallback(
+    async (nextCollected: Set<string>, nextRepeated: Repeated) => {
+      if (!canEdit) return
+      const seq = ++saveSeqRef.current
+      setStatus('saving')
+      try {
+        const res = await apiFetch<{ ok: true; updatedAt: number }>('/api/album', {
+          method: 'PUT',
+          body: { collected: [...nextCollected], repeated: nextRepeated },
+        })
+        if (seq !== saveSeqRef.current) return
+        setUpdatedAt(res.updatedAt)
+        setStatus('idle')
+      } catch {
+        if (seq !== saveSeqRef.current) return
+        setStatus('error')
+        // Reconcile with server truth on failure.
+        void refetch()
+      }
+    },
+    [canEdit, refetch],
+  )
 
-export function useAlbum() {
-  const [collected, setCollected] = useState<Set<string>>(loadCollected)
-  const [repeated, setRepeated] = useState<Record<string, number>>(loadRepeated)
-
-  const toggle = useCallback((id: string) => {
-    setCollected((prev) => {
+  const toggle = useCallback(
+    (id: string) => {
+      if (!canEdit) return
+      const prev = collectedRef.current
       const next = new Set(prev)
       if (next.has(id)) next.delete(id)
       else next.add(id)
-      saveCollected(next)
-      return next
-    })
-  }, [])
+      collectedRef.current = next
+      setCollected(next)
+      void persist(next, repeatedRef.current)
+    },
+    [canEdit, persist],
+  )
 
-  const incrementRepeated = useCallback((id: string) => {
-    setCollected((prev) => {
-      if (prev.has(id)) return prev
-      const next = new Set(prev)
-      next.add(id)
-      saveCollected(next)
-      return next
-    })
-    setRepeated((prev) => {
-      const next = { ...prev, [id]: (prev[id] ?? 0) + 1 }
-      saveRepeated(next)
-      return next
-    })
-  }, [])
+  const incrementRepeated = useCallback(
+    (id: string) => {
+      if (!canEdit) return
+      const prevCollected = collectedRef.current
+      const nextCollected = prevCollected.has(id) ? prevCollected : new Set(prevCollected).add(id)
+      const prevRepeated = repeatedRef.current
+      const nextRepeated = { ...prevRepeated, [id]: (prevRepeated[id] ?? 0) + 1 }
+      collectedRef.current = nextCollected
+      repeatedRef.current = nextRepeated
+      if (nextCollected !== prevCollected) setCollected(nextCollected)
+      setRepeated(nextRepeated)
+      void persist(nextCollected, nextRepeated)
+    },
+    [canEdit, persist],
+  )
 
-  const decrementRepeated = useCallback((id: string) => {
-    setRepeated((prev) => {
+  const decrementRepeated = useCallback(
+    (id: string) => {
+      if (!canEdit) return
+      const prev = repeatedRef.current
       const current = prev[id] ?? 0
-      if (current === 0) return prev
+      if (current === 0) return
       const next = { ...prev, [id]: current - 1 }
       if (next[id] === 0) delete next[id]
-      saveRepeated(next)
-      return next
-    })
-  }, [])
+      repeatedRef.current = next
+      setRepeated(next)
+      void persist(collectedRef.current, next)
+    },
+    [canEdit, persist],
+  )
 
   const progress = useMemo(
     () => ({ collected: collected.size, total: totalStickers }),
@@ -99,5 +151,16 @@ export function useAlbum() {
     [repeated],
   )
 
-  return { collected, toggle, progress, repeated, incrementRepeated, decrementRepeated, repeatedCount }
+  return {
+    collected,
+    toggle,
+    progress,
+    repeated,
+    incrementRepeated,
+    decrementRepeated,
+    repeatedCount,
+    status,
+    updatedAt,
+    refetch,
+  }
 }
