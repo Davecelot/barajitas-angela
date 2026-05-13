@@ -4,7 +4,7 @@
 
 import { webcrypto } from 'node:crypto';
 
-const ITERATIONS = 210_000;
+const ITERATIONS = 100_000;
 const SALT_BYTES = 16;
 const KEY_LEN_BITS = 256;
 
