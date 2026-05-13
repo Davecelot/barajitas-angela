@@ -58,6 +58,24 @@ Durable project memory for `review-rangers`. Use this file to record breaking ch
 - Avoid repeating: Do not update `defaultCollected` by hand without running the validator against the evidence doc.
 - Source: album-data-alignment SDD implementation and review-rangers pass 2026-05-12.
 
+## 2026-05-13 - Control Sheet Evidence Is Additive
+
+- Interest level: Mid
+- Context: A whole-album checklist image was added as secondary evidence for collected sticker state.
+- Decision / Insight: Control-sheet red checks may add confidently read IDs to `defaultCollected`, but absence of a red check must not remove photo-derived seed data. Ambiguous FWC/CC/check cells stay documented as uncertain until rechecked.
+- Rationale: The control sheet is a useful current possession source, but the dense image can miss or obscure cells; treating it as additive prevents accidental data loss.
+- Avoid repeating: Do not seed FWC/CC IDs or low-confidence control-sheet cells from the image alone. Keep `docs/album-analysis.md`, `src/data/album.ts`, and `scripts/validate-album-data.mjs` aligned.
+- Source: control-sheet-cross-check SDD implementation and review-rangers pass 2026-05-13.
+
+## 2026-05-13 - Sticker Labels Use Figure Codes
+
+- Interest level: Mid
+- Context: Team sticker labels mixed real player names, placeholder `Jugador N` labels, `Escudo`, and `We Are` names, while the control sheet identifies figures by printed codes.
+- Decision / Insight: Display sticker names as printed figure codes (`MEX1`, `KSA1`, `FWC1`, `CC1`) while keeping stable internal IDs like `mex-1` and `cc-1`.
+- Rationale: Figure codes match the physical checklist, avoid incomplete player-name data, and make missing/repeated share text easier to reconcile with the album.
+- Avoid repeating: Do not reintroduce player-name labels into `src/data/album.ts` unless a future display-policy change explicitly reverses this convention.
+- Source: figure-code-label implementation 2026-05-13.
+
 ## Changelog
 
 - 2026-05-10: Created entry "Seed-on-first-load Pattern for localStorage Album Data" because review-rangers identified two blockers in useAlbum.ts seed logic.
@@ -65,3 +83,5 @@ Durable project memory for `review-rangers`. Use this file to record breaking ch
 - 2026-05-11: Updated entry "makeTeam 18-element Contract Enforced" because the app-completion spec replaced the convention with a fixed-length tuple type.
 - 2026-05-11: Created entry "App Display and Structure Docs Are Canonical" because project-structure-governance established durable ownership for display policy, structure policy, and evidence assets.
 - 2026-05-12: Created entry "Album Photo Evidence Validation Gate" because seeded collection alignment now has a reusable verifier.
+- 2026-05-13: Created entry "Control Sheet Evidence Is Additive" because checklist evidence now supplements, but does not replace, photo-derived seed data.
+- 2026-05-13: Created entry "Sticker Labels Use Figure Codes" because display labels now intentionally match the control-sheet figure IDs.

@@ -10,11 +10,17 @@ collection data. This document governs display behavior built from that data.
   `defaultCollected`, and `totalStickers`.
 - Sticker IDs must remain `{teamCode}-{position}` for teams and section-prefixed
   IDs for special stickers such as `fwc-1` and `cc-1`.
-- Team stickers use the 20-slot album structure: slot 1 is `Escudo`, slots 2-12
-  are players, slot 13 is `We Are [Team]`, and slots 14-20 are players.
+- Team stickers use the 20-slot album structure: slot 1 is the team badge,
+  slots 2-12 are player slots, slot 13 is the `We Are`/team-photo slot, and
+  slots 14-20 are player slots.
+- Sticker display names must use the printed figure code from the checklist
+  table, such as `MEX1`, `KSA1`, `FWC1`, or `CC1`, instead of player names.
 - `makeTeam` must keep the fixed 18-player tuple contract.
 - `src/hooks/useAlbum.ts` owns browser persistence for collected and repeated
   sticker state.
+- On load, collected sticker state must merge the current `defaultCollected`
+  seed into any existing browser state when the seed content changes, preserving
+  user-added stickers while marking all evidence-backed stickers Angela has.
 
 ## App Sections
 
@@ -36,7 +42,7 @@ collection data. This document governs display behavior built from that data.
   count greater than zero and copies stickers available for exchange.
 - The tab bar has two views: `Mi album` for the full album and `Para cambiar`
   for stickers with repeated count greater than zero.
-- Search filters by sticker name, sticker number, or team name.
+- Search filters by sticker figure code, sticker number, or team name.
 - Special stickers render before team sections in the full album view.
 - Teams render in album order from `teams`.
 
@@ -52,8 +58,8 @@ collection data. This document governs display behavior built from that data.
 
 ## Sticker Display
 
-- Each sticker row shows sticker number, name, collected state, and repeated
-  controls.
+- Each sticker row shows sticker number, figure code, collected state, and
+  repeated controls.
 - Collected stickers use green styling.
 - Missing regular stickers use gray styling.
 - Shiny stickers use a distinct treatment: gold when collected and silver/gray
@@ -71,7 +77,7 @@ collection data. This document governs display behavior built from that data.
 - Teams are grouped by flag and localized team name.
 - Only missing stickers are listed.
 - Completed teams are omitted from global share text.
-- Sticker entries use `#<number> <name>` and are comma-separated.
+- Sticker entries use `#<number> <figure-code>` and are comma-separated.
 - Repeated share text starts with `*Barajitas repetidas para cambiar* 🔁`.
 - Repeated sticker entries include the extra-copy count as `(+<count>)`.
 

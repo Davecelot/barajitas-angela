@@ -18,21 +18,31 @@ type PlayerNames = [
   string, string, string, string, string, string, string, string, string,
 ]
 
-// players: 18 names — positions 2-12 (indices 0-10), then 14-20 (indices 11-17)
+const ENGLAND_FLAG = '\u{1F3F4}\u{E0067}\u{E0062}\u{E0065}\u{E006E}\u{E0067}\u{E007F}'
+
+function figureCode(id: string, number: number): string {
+  const prefix = id === 'sau' ? 'KSA' : id.toUpperCase()
+  return `${prefix}${number}`
+}
+
+// Player arrays preserve the 20-slot album contract; display labels use figure IDs.
 function makeTeam(
   id: string,
   name: string,
-  weAre: string,
+  _weAre: string,
   flag: string,
   group: string,
-  players: PlayerNames,
+  _players: PlayerNames,
 ): Team {
-  const stickers: Sticker[] = [
-    { id: `${id}-1`, number: 1, name: 'Escudo', isShiny: true },
-    ...players.slice(0, 11).map((p, i) => ({ id: `${id}-${i + 2}`, number: i + 2, name: p })),
-    { id: `${id}-13`, number: 13, name: `We Are ${weAre}`, isShiny: true },
-    ...players.slice(11, 18).map((p, i) => ({ id: `${id}-${i + 14}`, number: i + 14, name: p })),
-  ]
+  const stickers: Sticker[] = Array.from({ length: 20 }, (_, i) => {
+    const number = i + 1
+    return {
+      id: `${id}-${number}`,
+      number,
+      name: figureCode(id, number),
+      isShiny: number === 1 || number === 13,
+    }
+  })
   return { id, name, flag, group, stickers }
 }
 
@@ -40,27 +50,17 @@ function makeTeam(
 export const fwcStickers: Sticker[] = Array.from({ length: 18 }, (_, i) => ({
   id: `fwc-${i + 1}`,
   number: i + 1,
-  name: `Historia FWC ${i + 1}`,
+  name: `FWC${i + 1}`,
   isShiny: false,
 }))
 
 // ── CC — Coca-Cola section ────────────────────────────────────────────────────
-export const ccStickers: Sticker[] = [
-  { id: 'cc-1', number: 1, name: 'Lamine Yamal', isShiny: true },
-  { id: 'cc-2', number: 2, name: 'Joshua Kimmich', isShiny: true },
-  { id: 'cc-3', number: 3, name: 'Harry Kane', isShiny: true },
-  { id: 'cc-4', number: 4, name: 'Santiago Giménez', isShiny: true },
-  { id: 'cc-5', number: 5, name: 'Joško Gvardiol', isShiny: true },
-  { id: 'cc-6', number: 6, name: 'Federico Valverde', isShiny: true },
-  { id: 'cc-7', number: 7, name: 'Jefferson Lerma', isShiny: true },
-  { id: 'cc-8', number: 8, name: 'Enner Valencia', isShiny: true },
-  { id: 'cc-9', number: 9, name: 'Gabriel Magalhães', isShiny: true },
-  { id: 'cc-10', number: 10, name: 'Virgil van Dijk', isShiny: true },
-  { id: 'cc-11', number: 11, name: 'Alphonso Davies', isShiny: true },
-  { id: 'cc-12', number: 12, name: 'Emiliano Martínez', isShiny: true },
-  { id: 'cc-13', number: 13, name: 'Raúl Jiménez', isShiny: true },
-  { id: 'cc-14', number: 14, name: 'Lautaro Martínez', isShiny: true },
-]
+export const ccStickers: Sticker[] = Array.from({ length: 14 }, (_, i) => ({
+  id: `cc-${i + 1}`,
+  number: i + 1,
+  name: `CC${i + 1}`,
+  isShiny: true,
+}))
 
 export const specialStickers: Sticker[] = [...fwcStickers, ...ccStickers]
 
@@ -398,7 +398,7 @@ export const teams: Team[] = [
   ]),
 
   // === GRUPO L ===
-  makeTeam('eng', 'Inglaterra', 'England', '🏴', 'L', [
+  makeTeam('eng', 'Inglaterra', 'England', ENGLAND_FLAG, 'L', [
     'Jordan Pickford', 'John Stones', 'Marc Guehi', 'Ezri Konsa',
     'Trent Alexander-Arnold', 'Reece James', 'Dan Burn', 'Declan Rice',
     'Harry Kane', 'Cole Palmer', 'Jude Bellingham',
@@ -428,103 +428,152 @@ export const teams: Team[] = [
   ]),
 ]
 
-// ── Stickers Angela already has (pre-seeded from photo analysis) ──────────────
+// ── Stickers Angela already has (pre-seeded from photo/control-sheet evidence)
 export const defaultCollected = new Set<string>([
   // MEX
-  'mex-1', 'mex-2', 'mex-5', 'mex-6', 'mex-9', 'mex-10', 'mex-12',
+  'mex-1', 'mex-2', 'mex-5', 'mex-6', 'mex-7', 'mex-9', 'mex-10', 'mex-11',
+  'mex-12', 'mex-13', 'mex-14', 'mex-16', 'mex-18', 'mex-19',
   // RSA
-  'rsa-1', 'rsa-3', 'rsa-4', 'rsa-9', 'rsa-11', 'rsa-12',
-  'rsa-14', 'rsa-15', 'rsa-16', 'rsa-17',
+  'rsa-1', 'rsa-3', 'rsa-4', 'rsa-7', 'rsa-9', 'rsa-10', 'rsa-11', 'rsa-12',
+  'rsa-14', 'rsa-15', 'rsa-16', 'rsa-17', 'rsa-18',
   // KOR
-  'kor-2', 'kor-3', 'kor-5', 'kor-6', 'kor-7', 'kor-11', 'kor-16', 'kor-17',
+  'kor-2', 'kor-3', 'kor-5', 'kor-6', 'kor-7', 'kor-11', 'kor-13', 'kor-14',
+  'kor-15', 'kor-16', 'kor-17', 'kor-20',
   // CZE
-  'cze-1', 'cze-5',
+  'cze-1', 'cze-5', 'cze-6', 'cze-7', 'cze-8', 'cze-9', 'cze-10', 'cze-12',
+  'cze-14', 'cze-15', 'cze-17', 'cze-18', 'cze-19', 'cze-20',
   // CAN
-  'can-2', 'can-5', 'can-7', 'can-10', 'can-12',
-  'can-15', 'can-17', 'can-18', 'can-19',
+  'can-2', 'can-4', 'can-5', 'can-7', 'can-8', 'can-9', 'can-10', 'can-12',
+  'can-13', 'can-15', 'can-17', 'can-18', 'can-19', 'can-20',
   // BIH
-  'bih-7', 'bih-12', 'bih-20',
+  'bih-3', 'bih-5', 'bih-7', 'bih-8', 'bih-11', 'bih-12', 'bih-16', 'bih-20',
   // QAT
-  'qat-2', 'qat-3', 'qat-4', 'qat-5', 'qat-6', 'qat-7', 'qat-8',
-  'qat-10', 'qat-12', 'qat-13', 'qat-14', 'qat-16', 'qat-18', 'qat-20',
+  'qat-2', 'qat-3', 'qat-4', 'qat-5', 'qat-6', 'qat-7', 'qat-8', 'qat-10',
+  'qat-12', 'qat-13', 'qat-14', 'qat-15', 'qat-16', 'qat-18', 'qat-19', 'qat-20',
   // SUI
-  'sui-4', 'sui-5', 'sui-8', 'sui-9', 'sui-11', 'sui-12', 'sui-13',
+  'sui-1', 'sui-4', 'sui-5', 'sui-8', 'sui-9', 'sui-11', 'sui-12', 'sui-13',
   'sui-14', 'sui-15', 'sui-16', 'sui-18', 'sui-19', 'sui-20',
   // BRA
-  'bra-1', 'bra-3', 'bra-7', 'bra-9', 'bra-11', 'bra-15', 'bra-16', 'bra-17', 'bra-20',
+  'bra-1', 'bra-2', 'bra-3', 'bra-7', 'bra-9', 'bra-11', 'bra-14', 'bra-15',
+  'bra-16', 'bra-17', 'bra-19', 'bra-20',
+  // MAR
+  'mar-2', 'mar-4', 'mar-5', 'mar-6', 'mar-9', 'mar-11', 'mar-12', 'mar-14',
+  'mar-15', 'mar-17', 'mar-18', 'mar-20',
+  // HAI
+  'hai-1', 'hai-2', 'hai-5', 'hai-6', 'hai-10', 'hai-16', 'hai-18', 'hai-20',
   // SCO
-  'sco-4', 'sco-7', 'sco-8', 'sco-9', 'sco-11', 'sco-12',
-  'sco-15', 'sco-16', 'sco-17', 'sco-19', 'sco-20',
+  'sco-1', 'sco-4', 'sco-6', 'sco-7', 'sco-8', 'sco-9', 'sco-10', 'sco-11',
+  'sco-12', 'sco-14', 'sco-15', 'sco-16', 'sco-17', 'sco-19', 'sco-20',
   // USA
-  'usa-3', 'usa-9', 'usa-13', 'usa-20',
+  'usa-1', 'usa-3', 'usa-6', 'usa-7', 'usa-9', 'usa-10', 'usa-11', 'usa-13',
+  'usa-14', 'usa-15', 'usa-16', 'usa-17', 'usa-19', 'usa-20',
   // PAR
-  'par-1', 'par-2', 'par-6', 'par-7', 'par-8', 'par-10',
-  'par-15', 'par-16', 'par-19', 'par-20',
+  'par-1', 'par-2', 'par-3', 'par-5', 'par-6', 'par-7', 'par-8', 'par-10',
+  'par-11', 'par-15', 'par-16', 'par-19', 'par-20',
   // AUS
-  'aus-3', 'aus-4', 'aus-6', 'aus-9', 'aus-11', 'aus-16', 'aus-18', 'aus-20',
+  'aus-3', 'aus-4', 'aus-6', 'aus-7', 'aus-8', 'aus-9', 'aus-11', 'aus-12',
+  'aus-15', 'aus-16', 'aus-18', 'aus-20',
   // TUR
-  'tur-1', 'tur-2', 'tur-5', 'tur-6', 'tur-10', 'tur-13', 'tur-16',
+  'tur-1', 'tur-2', 'tur-4', 'tur-5', 'tur-6', 'tur-7', 'tur-8', 'tur-10',
+  'tur-13', 'tur-16',
   // GER
-  'ger-1', 'ger-4', 'ger-5', 'ger-6', 'ger-8', 'ger-9', 'ger-10',
-  'ger-12', 'ger-13', 'ger-15', 'ger-17', 'ger-18',
+  'ger-1', 'ger-4', 'ger-5', 'ger-6', 'ger-8', 'ger-9', 'ger-10', 'ger-12',
+  'ger-13', 'ger-14', 'ger-15', 'ger-17', 'ger-18', 'ger-19',
   // CUW
-  'cuw-1', 'cuw-3', 'cuw-4', 'cuw-5', 'cuw-6', 'cuw-8', 'cuw-9',
-  'cuw-12', 'cuw-13', 'cuw-14', 'cuw-15', 'cuw-18', 'cuw-19',
+  'cuw-1', 'cuw-3', 'cuw-4', 'cuw-5', 'cuw-6', 'cuw-7', 'cuw-8', 'cuw-9',
+  'cuw-10', 'cuw-12', 'cuw-13', 'cuw-14', 'cuw-15', 'cuw-18', 'cuw-19', 'cuw-20',
+  // ECU
+  'ecu-1', 'ecu-2', 'ecu-3', 'ecu-4', 'ecu-5', 'ecu-6', 'ecu-8', 'ecu-9',
+  'ecu-10', 'ecu-12', 'ecu-13', 'ecu-14', 'ecu-17', 'ecu-18', 'ecu-19', 'ecu-20',
   // CIV
-  'civ-3', 'civ-5', 'civ-9', 'civ-10', 'civ-13', 'civ-14', 'civ-15', 'civ-17',
+  'civ-2', 'civ-3', 'civ-4', 'civ-5', 'civ-7', 'civ-8', 'civ-9', 'civ-10',
+  'civ-11', 'civ-12', 'civ-13', 'civ-14', 'civ-15', 'civ-16', 'civ-17', 'civ-20',
+  // NED
+  'ned-8', 'ned-10', 'ned-11', 'ned-13', 'ned-14', 'ned-15', 'ned-16', 'ned-18',
+  'ned-20',
   // JPN
-  'jpn-1', 'jpn-2', 'jpn-3', 'jpn-5', 'jpn-6', 'jpn-10', 'jpn-11',
-  'jpn-14', 'jpn-15', 'jpn-16', 'jpn-18', 'jpn-19', 'jpn-20',
-  // SWE
-  'swe-5', 'swe-7', 'swe-9', 'swe-16', 'swe-18',
+  'jpn-1', 'jpn-2', 'jpn-3', 'jpn-4', 'jpn-5', 'jpn-6', 'jpn-8', 'jpn-9',
+  'jpn-10', 'jpn-11', 'jpn-12', 'jpn-14', 'jpn-15', 'jpn-16', 'jpn-17', 'jpn-18',
+  'jpn-19', 'jpn-20',
   // TUN
-  'tun-1', 'tun-2', 'tun-3', 'tun-4', 'tun-5', 'tun-6',
-  'tun-8', 'tun-9', 'tun-10', 'tun-11', 'tun-12',
-  'tun-14', 'tun-15', 'tun-17', 'tun-18', 'tun-19', 'tun-20',
+  'tun-1', 'tun-2', 'tun-3', 'tun-4', 'tun-5', 'tun-6', 'tun-8', 'tun-9',
+  'tun-10', 'tun-11', 'tun-12', 'tun-14', 'tun-15', 'tun-16', 'tun-17', 'tun-18',
+  'tun-19', 'tun-20',
+  // SWE
+  'swe-5', 'swe-7', 'swe-9', 'swe-11', 'swe-16', 'swe-18',
   // BEL
-  'bel-8', 'bel-13', 'bel-14', 'bel-18',
+  'bel-1', 'bel-2', 'bel-6', 'bel-7', 'bel-8', 'bel-10', 'bel-11', 'bel-13',
+  'bel-14', 'bel-15', 'bel-16', 'bel-18', 'bel-19', 'bel-20',
   // EGY
-  'egy-1', 'egy-2', 'egy-3', 'egy-4', 'egy-5', 'egy-6', 'egy-8',
-  'egy-10', 'egy-12', 'egy-13', 'egy-14', 'egy-17', 'egy-18', 'egy-19', 'egy-20',
+  'egy-1', 'egy-2', 'egy-3', 'egy-4', 'egy-5', 'egy-6', 'egy-8', 'egy-9',
+  'egy-10', 'egy-11', 'egy-12', 'egy-13', 'egy-14', 'egy-17', 'egy-18', 'egy-19',
+  'egy-20',
   // IRN
-  'irn-1', 'irn-2', 'irn-3', 'irn-4', 'irn-8', 'irn-11', 'irn-12', 'irn-16',
+  'irn-1', 'irn-2', 'irn-3', 'irn-4', 'irn-7', 'irn-8', 'irn-10', 'irn-11',
+  'irn-12', 'irn-14', 'irn-15', 'irn-16', 'irn-19', 'irn-20',
   // NZL
-  'nzl-3', 'nzl-7', 'nzl-10', 'nzl-15', 'nzl-18', 'nzl-19', 'nzl-20',
+  'nzl-3', 'nzl-5', 'nzl-7', 'nzl-9', 'nzl-10', 'nzl-13', 'nzl-14', 'nzl-15',
+  'nzl-17', 'nzl-18', 'nzl-19', 'nzl-20',
   // ESP
-  'esp-1', 'esp-2', 'esp-4', 'esp-5', 'esp-6', 'esp-9', 'esp-11',
-  'esp-13', 'esp-14', 'esp-15', 'esp-18', 'esp-19',
+  'esp-1', 'esp-2', 'esp-3', 'esp-4', 'esp-5', 'esp-6', 'esp-8', 'esp-9',
+  'esp-11', 'esp-12', 'esp-13', 'esp-14', 'esp-15', 'esp-18', 'esp-19',
   // CPV
-  'cpv-2', 'cpv-7', 'cpv-8',
+  'cpv-1', 'cpv-2', 'cpv-4', 'cpv-5', 'cpv-6', 'cpv-7', 'cpv-8', 'cpv-9',
+  'cpv-10', 'cpv-12', 'cpv-13', 'cpv-15', 'cpv-17', 'cpv-18',
+  // SAU
+  'sau-1', 'sau-2', 'sau-5', 'sau-6', 'sau-10', 'sau-13', 'sau-16',
+  // URU
+  'uru-3', 'uru-4', 'uru-6', 'uru-8', 'uru-9', 'uru-11', 'uru-16', 'uru-18',
+  'uru-20',
   // FRA
-  'fra-2', 'fra-3', 'fra-6', 'fra-7', 'fra-9', 'fra-10',
-  'fra-11', 'fra-14', 'fra-15', 'fra-16', 'fra-17', 'fra-19',
+  'fra-1', 'fra-2', 'fra-3', 'fra-6', 'fra-7', 'fra-8', 'fra-9', 'fra-10',
+  'fra-11', 'fra-14', 'fra-15', 'fra-16', 'fra-17', 'fra-19', 'fra-20',
   // SEN
-  'sen-1', 'sen-4', 'sen-7', 'sen-9', 'sen-10',
-  'sen-14', 'sen-15', 'sen-16', 'sen-17',
+  'sen-1', 'sen-3', 'sen-4', 'sen-7', 'sen-9', 'sen-10', 'sen-13', 'sen-14',
+  'sen-15', 'sen-16', 'sen-17', 'sen-20',
+  // NOR
+  'nor-1', 'nor-4', 'nor-5', 'nor-9', 'nor-11', 'nor-13', 'nor-14', 'nor-16',
+  'nor-18', 'nor-20',
   // IRQ
-  'irq-1', 'irq-2', 'irq-5', 'irq-6', 'irq-10',
-  'irq-16', 'irq-18', 'irq-20',
+  'irq-1', 'irq-2', 'irq-3', 'irq-5', 'irq-6', 'irq-7', 'irq-8', 'irq-10',
+  'irq-11', 'irq-12', 'irq-15', 'irq-16', 'irq-17', 'irq-18', 'irq-19', 'irq-20',
+  // ARG
+  'arg-1', 'arg-2', 'arg-4', 'arg-6', 'arg-10', 'arg-11', 'arg-13', 'arg-15',
+  'arg-16', 'arg-19',
+  // ALG
+  'alg-1', 'alg-5', 'alg-7', 'alg-9', 'alg-11', 'alg-14', 'alg-16', 'alg-17',
+  'alg-20',
   // JOR
-  'jor-4', 'jor-5', 'jor-8', 'jor-9', 'jor-12', 'jor-13',
-  'jor-16', 'jor-18', 'jor-19', 'jor-20',
-  // UZB
-  'uzb-7', 'uzb-10', 'uzb-18',
-  // COL
-  'col-1', 'col-4', 'col-5', 'col-6', 'col-7', 'col-9',
-  'col-10', 'col-11', 'col-13', 'col-14', 'col-16', 'col-18',
+  'jor-3', 'jor-4', 'jor-5', 'jor-6', 'jor-7', 'jor-8', 'jor-9', 'jor-10',
+  'jor-12', 'jor-13', 'jor-14', 'jor-16', 'jor-18', 'jor-19', 'jor-20',
+  // AUT
+  'aut-4', 'aut-5', 'aut-8', 'aut-9', 'aut-11', 'aut-12', 'aut-14', 'aut-15',
+  'aut-16', 'aut-18', 'aut-20',
   // POR
-  'por-2', 'por-6', 'por-7', 'por-8', 'por-9', 'por-10', 'por-11', 'por-12',
-  'por-14', 'por-15', 'por-19', 'por-20',
+  'por-2', 'por-3', 'por-4', 'por-5', 'por-6', 'por-7', 'por-8', 'por-9',
+  'por-10', 'por-11', 'por-12', 'por-13', 'por-14', 'por-15', 'por-16', 'por-19',
+  'por-20',
+  // COD
+  'cod-6', 'cod-20',
+  // UZB
+  'uzb-2', 'uzb-5', 'uzb-6', 'uzb-7', 'uzb-10', 'uzb-11', 'uzb-12', 'uzb-15',
+  'uzb-17', 'uzb-18', 'uzb-19', 'uzb-20',
+  // COL
+  'col-1', 'col-4', 'col-5', 'col-6', 'col-7', 'col-9', 'col-10', 'col-11',
+  'col-13', 'col-14', 'col-16', 'col-18',
   // ENG
-  'eng-1', 'eng-2', 'eng-5', 'eng-7', 'eng-9',
-  'eng-11', 'eng-12', 'eng-15', 'eng-16', 'eng-17',
+  'eng-1', 'eng-2', 'eng-3', 'eng-5', 'eng-6', 'eng-7', 'eng-9', 'eng-11',
+  'eng-12', 'eng-15', 'eng-16', 'eng-17', 'eng-19', 'eng-20',
   // CRO
-  'cro-2', 'cro-5', 'cro-6', 'cro-9', 'cro-14', 'cro-17',
+  'cro-1', 'cro-2', 'cro-3', 'cro-4', 'cro-5', 'cro-6', 'cro-9', 'cro-12',
+  'cro-14', 'cro-17', 'cro-18',
   // GHA
-  'gha-1', 'gha-2', 'gha-3', 'gha-4', 'gha-5', 'gha-6',
-  'gha-7', 'gha-10', 'gha-13',
+  'gha-1', 'gha-2', 'gha-3', 'gha-4', 'gha-5', 'gha-6', 'gha-7', 'gha-8',
+  'gha-9', 'gha-10', 'gha-12', 'gha-13', 'gha-15', 'gha-16', 'gha-17', 'gha-18',
+  'gha-19', 'gha-20',
   // PAN
-  'pan-1', 'pan-10', 'pan-13', 'pan-15', 'pan-17',
+  'pan-1', 'pan-2', 'pan-5', 'pan-6', 'pan-8', 'pan-10', 'pan-13', 'pan-15',
+  'pan-17',
 ])
 
 export const totalStickers =

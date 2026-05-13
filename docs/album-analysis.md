@@ -1101,6 +1101,182 @@ blocks the printed slot.
 - CC13 - Raul Jimenez
 - CC14 - Lautaro Martinez
 
+## Control Sheet Cross-Check - 2026-05-12
+
+Source image: `assets/control-sheets/2026-05-12-control-sheet.jpeg`.
+
+Method: whole-table image reviewed as secondary evidence. The national-team grid
+was mapped by row/column, red marks with strong pixel evidence were accepted,
+and low-count or label-obscured cells were kept out of seed data. The FWC rows
+are split around the page header and remain recheck-only; the CC row has no
+confident red checks in this image.
+
+### Confirmed Red Checks
+
+- MEX: `mex-2`, `mex-7`, `mex-9`, `mex-11`, `mex-13`, `mex-14`, `mex-16`, `mex-18`, `mex-19`
+- RSA: `rsa-7`, `rsa-10`, `rsa-18`
+- KOR: `kor-3`, `kor-13`, `kor-14`, `kor-15`, `kor-20`
+- CZE: `cze-1`, `cze-6`, `cze-7`, `cze-8`, `cze-9`, `cze-10`, `cze-12`, `cze-14`, `cze-15`, `cze-17`, `cze-18`, `cze-19`, `cze-20`
+- CAN: `can-4`, `can-5`, `can-8`, `can-9`, `can-12`, `can-13`, `can-17`, `can-18`, `can-19`, `can-20`
+- BIH: `bih-3`, `bih-5`, `bih-7`, `bih-8`, `bih-11`, `bih-12`, `bih-16`
+- QAT: `qat-2`, `qat-3`, `qat-6`, `qat-14`, `qat-15`, `qat-16`, `qat-19`
+- SUI: `sui-1`, `sui-4`, `sui-5`, `sui-8`, `sui-14`, `sui-15`, `sui-18`
+- BRA: `bra-2`, `bra-3`, `bra-7`, `bra-9`, `bra-14`, `bra-15`, `bra-19`
+- MAR: `mar-2`, `mar-4`, `mar-5`, `mar-6`, `mar-9`, `mar-11`, `mar-12`, `mar-14`, `mar-15`, `mar-17`, `mar-18`, `mar-20`
+- HAI: `hai-1`, `hai-2`, `hai-5`, `hai-6`, `hai-10`, `hai-16`, `hai-18`, `hai-20`
+- SCO: `sco-1`, `sco-4`, `sco-6`, `sco-7`, `sco-9`, `sco-10`, `sco-14`, `sco-15`, `sco-16`, `sco-17`, `sco-19`
+- USA: `usa-1`, `usa-3`, `usa-6`, `usa-7`, `usa-9`, `usa-10`, `usa-11`, `usa-14`, `usa-15`, `usa-16`, `usa-17`, `usa-19`, `usa-20`
+- PAR: `par-2`, `par-3`, `par-5`, `par-6`, `par-7`, `par-10`, `par-11`
+- AUS: `aus-4`, `aus-7`, `aus-8`, `aus-9`, `aus-12`, `aus-15`, `aus-16`, `aus-20`
+- TUR: `tur-4`, `tur-7`, `tur-8`, `tur-16`
+- GER: `ger-1`, `ger-4`, `ger-5`, `ger-6`, `ger-9`, `ger-12`, `ger-13`, `ger-14`, `ger-15`, `ger-17`, `ger-18`, `ger-19`
+- CUW: `cuw-3`, `cuw-7`, `cuw-10`, `cuw-15`, `cuw-18`, `cuw-19`, `cuw-20`
+- CIV: `civ-2`, `civ-3`, `civ-4`, `civ-7`, `civ-8`, `civ-11`, `civ-12`, `civ-16`, `civ-20`
+- ECU: `ecu-1`, `ecu-2`, `ecu-3`, `ecu-4`, `ecu-5`, `ecu-6`, `ecu-8`, `ecu-9`, `ecu-10`, `ecu-12`, `ecu-13`, `ecu-14`, `ecu-17`, `ecu-18`, `ecu-19`, `ecu-20`
+- NED: `ned-8`, `ned-10`, `ned-11`, `ned-13`, `ned-14`, `ned-15`, `ned-16`, `ned-18`, `ned-20`
+- JPN: `jpn-2`, `jpn-3`, `jpn-4`, `jpn-5`, `jpn-6`, `jpn-8`, `jpn-9`, `jpn-10`, `jpn-12`, `jpn-14`, `jpn-15`, `jpn-17`, `jpn-18`, `jpn-20`
+- SWE: `swe-7`, `swe-9`, `swe-11`, `swe-16`, `swe-18`
+- TUN: `tun-1`, `tun-2`, `tun-3`, `tun-5`, `tun-16`
+- BEL: `bel-1`, `bel-2`, `bel-6`, `bel-7`, `bel-8`, `bel-10`, `bel-11`, `bel-14`, `bel-15`, `bel-16`, `bel-19`, `bel-20`
+- EGY: `egy-3`, `egy-8`, `egy-9`, `egy-10`, `egy-11`, `egy-12`, `egy-17`, `egy-18`, `egy-19`
+- IRN: `irn-2`, `irn-3`, `irn-4`, `irn-7`, `irn-10`, `irn-11`, `irn-14`, `irn-15`, `irn-16`, `irn-19`, `irn-20`
+- NZL: `nzl-3`, `nzl-5`, `nzl-9`, `nzl-10`, `nzl-13`, `nzl-14`, `nzl-15`, `nzl-17`
+- ESP: `esp-1`, `esp-3`, `esp-4`, `esp-5`, `esp-6`, `esp-8`, `esp-9`, `esp-12`, `esp-14`, `esp-15`, `esp-18`, `esp-19`
+- CPV: `cpv-1`, `cpv-4`, `cpv-5`, `cpv-6`, `cpv-8`, `cpv-9`, `cpv-10`, `cpv-12`, `cpv-13`, `cpv-15`, `cpv-17`, `cpv-18`
+- SAU: `sau-1`, `sau-2`, `sau-5`, `sau-6`, `sau-10`, `sau-13`, `sau-16`
+- URU: `uru-3`, `uru-4`, `uru-6`, `uru-8`, `uru-9`, `uru-11`, `uru-16`, `uru-18`, `uru-20`
+- FRA: `fra-1`, `fra-6`, `fra-7`, `fra-8`, `fra-10`, `fra-15`, `fra-16`, `fra-19`, `fra-20`
+- SEN: `sen-3`, `sen-9`, `sen-13`, `sen-20`
+- IRQ: `irq-3`, `irq-6`, `irq-7`, `irq-8`, `irq-10`, `irq-11`, `irq-12`, `irq-15`, `irq-16`, `irq-17`, `irq-19`, `irq-20`
+- NOR: `nor-1`, `nor-4`, `nor-5`, `nor-9`, `nor-11`, `nor-13`, `nor-14`, `nor-16`, `nor-18`, `nor-20`
+- ARG: `arg-1`, `arg-2`, `arg-4`, `arg-6`, `arg-10`, `arg-11`, `arg-13`, `arg-15`, `arg-16`, `arg-19`
+- ALG: `alg-1`, `alg-5`, `alg-7`, `alg-9`, `alg-11`, `alg-14`, `alg-16`, `alg-17`, `alg-20`
+- AUT: `aut-4`, `aut-5`, `aut-8`, `aut-9`, `aut-11`, `aut-12`, `aut-14`, `aut-15`, `aut-16`, `aut-18`, `aut-20`
+- JOR: `jor-3`, `jor-6`, `jor-7`, `jor-8`, `jor-10`, `jor-12`, `jor-13`, `jor-14`
+- POR: `por-3`, `por-4`, `por-5`, `por-6`, `por-7`, `por-8`, `por-10`, `por-11`, `por-12`, `por-13`, `por-16`, `por-20`
+- COD: `cod-6`, `cod-20`
+- UZB: `uzb-2`, `uzb-5`, `uzb-6`, `uzb-10`, `uzb-11`, `uzb-12`, `uzb-15`, `uzb-17`, `uzb-18`, `uzb-19`, `uzb-20`
+- COL: `col-1`, `col-5`, `col-7`, `col-18`
+- ENG: `eng-2`, `eng-3`, `eng-5`, `eng-6`, `eng-7`, `eng-9`, `eng-11`, `eng-16`, `eng-19`, `eng-20`
+- CRO: `cro-1`, `cro-3`, `cro-4`, `cro-5`, `cro-9`, `cro-12`, `cro-14`, `cro-18`
+- GHA: `gha-1`, `gha-2`, `gha-4`, `gha-5`, `gha-8`, `gha-9`, `gha-12`, `gha-15`, `gha-16`, `gha-17`, `gha-18`, `gha-19`, `gha-20`
+- PAN: `pan-1`, `pan-2`, `pan-5`, `pan-6`, `pan-8`
+
+### Uncertain Red Checks
+
+- CAN: `can-14`
+- BIH: `bih-14`
+- QAT: `qat-5`, `qat-9`, `qat-10`, `qat-13`, `qat-18`
+- SUI: `sui-2`, `sui-6`, `sui-7`, `sui-9`, `sui-10`, `sui-13`, `sui-19`
+- BRA: `bra-1`, `bra-5`, `bra-10`, `bra-18`
+- MAR: `mar-16`
+- SCO: `sco-20`
+- TUN: `tun-6`, `tun-12`, `tun-18`
+- BEL: `bel-12`, `bel-18`
+- EGY: `egy-6`
+- IRN: `irn-6`, `irn-18`
+- AUT: `aut-19`
+- JOR: `jor-4`, `jor-5`, `jor-11`, `jor-16`, `jor-18`, `jor-19`, `jor-20`
+- POR: `por-14`, `por-18`
+- COD: `cod-2`, `cod-7`, `cod-11`, `cod-12`, `cod-15`
+- COL: `col-2`
+- FWC: top and bottom FWC rows contain red marks, but the split layout and
+  partly obscured labels make exact `fwc-*` IDs unsafe to seed from this image.
+- CC: no `cc-*` cell has a confident red check in this image.
+
+### Discrepancies Against Existing Seed
+
+Control-sheet-only confirmed IDs added to `defaultCollected` (281):
+
+- MEX: `mex-7`, `mex-11`, `mex-13`, `mex-14`, `mex-16`, `mex-18`, `mex-19`
+- RSA: `rsa-7`, `rsa-10`, `rsa-18`
+- KOR: `kor-13`, `kor-14`, `kor-15`, `kor-20`
+- CZE: `cze-6`, `cze-7`, `cze-8`, `cze-9`, `cze-10`, `cze-12`, `cze-14`, `cze-15`, `cze-17`, `cze-18`, `cze-19`, `cze-20`
+- CAN: `can-4`, `can-8`, `can-9`, `can-13`, `can-20`
+- BIH: `bih-3`, `bih-5`, `bih-8`, `bih-11`, `bih-16`
+- QAT: `qat-15`, `qat-19`
+- SUI: `sui-1`
+- BRA: `bra-2`, `bra-14`, `bra-19`
+- MAR: `mar-2`, `mar-4`, `mar-5`, `mar-6`, `mar-9`, `mar-11`, `mar-12`, `mar-14`, `mar-15`, `mar-17`, `mar-18`, `mar-20`
+- HAI: `hai-1`, `hai-2`, `hai-5`, `hai-6`, `hai-10`, `hai-16`, `hai-18`, `hai-20`
+- SCO: `sco-1`, `sco-6`, `sco-10`, `sco-14`
+- USA: `usa-1`, `usa-6`, `usa-7`, `usa-10`, `usa-11`, `usa-14`, `usa-15`, `usa-16`, `usa-17`, `usa-19`
+- PAR: `par-3`, `par-5`, `par-11`
+- AUS: `aus-7`, `aus-8`, `aus-12`, `aus-15`
+- TUR: `tur-4`, `tur-7`, `tur-8`
+- GER: `ger-14`, `ger-19`
+- CUW: `cuw-7`, `cuw-10`, `cuw-20`
+- CIV: `civ-2`, `civ-4`, `civ-7`, `civ-8`, `civ-11`, `civ-12`, `civ-16`, `civ-20`
+- ECU: `ecu-1`, `ecu-2`, `ecu-3`, `ecu-4`, `ecu-5`, `ecu-6`, `ecu-8`, `ecu-9`, `ecu-10`, `ecu-12`, `ecu-13`, `ecu-14`, `ecu-17`, `ecu-18`, `ecu-19`, `ecu-20`
+- NED: `ned-8`, `ned-10`, `ned-11`, `ned-13`, `ned-14`, `ned-15`, `ned-16`, `ned-18`, `ned-20`
+- JPN: `jpn-4`, `jpn-8`, `jpn-9`, `jpn-12`, `jpn-17`
+- SWE: `swe-11`
+- TUN: `tun-16`
+- BEL: `bel-1`, `bel-2`, `bel-6`, `bel-7`, `bel-10`, `bel-11`, `bel-15`, `bel-16`, `bel-19`, `bel-20`
+- EGY: `egy-9`, `egy-11`
+- IRN: `irn-7`, `irn-10`, `irn-14`, `irn-15`, `irn-19`, `irn-20`
+- NZL: `nzl-5`, `nzl-9`, `nzl-13`, `nzl-14`, `nzl-17`
+- ESP: `esp-3`, `esp-8`, `esp-12`
+- CPV: `cpv-1`, `cpv-4`, `cpv-5`, `cpv-6`, `cpv-9`, `cpv-10`, `cpv-12`, `cpv-13`, `cpv-15`, `cpv-17`, `cpv-18`
+- SAU: `sau-1`, `sau-2`, `sau-5`, `sau-6`, `sau-10`, `sau-13`, `sau-16`
+- URU: `uru-3`, `uru-4`, `uru-6`, `uru-8`, `uru-9`, `uru-11`, `uru-16`, `uru-18`, `uru-20`
+- FRA: `fra-1`, `fra-8`, `fra-20`
+- SEN: `sen-3`, `sen-13`, `sen-20`
+- IRQ: `irq-3`, `irq-7`, `irq-8`, `irq-11`, `irq-12`, `irq-15`, `irq-17`, `irq-19`
+- NOR: `nor-1`, `nor-4`, `nor-5`, `nor-9`, `nor-11`, `nor-13`, `nor-14`, `nor-16`, `nor-18`, `nor-20`
+- ARG: `arg-1`, `arg-2`, `arg-4`, `arg-6`, `arg-10`, `arg-11`, `arg-13`, `arg-15`, `arg-16`, `arg-19`
+- ALG: `alg-1`, `alg-5`, `alg-7`, `alg-9`, `alg-11`, `alg-14`, `alg-16`, `alg-17`, `alg-20`
+- AUT: `aut-4`, `aut-5`, `aut-8`, `aut-9`, `aut-11`, `aut-12`, `aut-14`, `aut-15`, `aut-16`, `aut-18`, `aut-20`
+- JOR: `jor-3`, `jor-6`, `jor-7`, `jor-10`, `jor-14`
+- POR: `por-3`, `por-4`, `por-5`, `por-13`, `por-16`
+- COD: `cod-6`, `cod-20`
+- UZB: `uzb-2`, `uzb-5`, `uzb-6`, `uzb-11`, `uzb-12`, `uzb-15`, `uzb-17`, `uzb-19`, `uzb-20`
+- ENG: `eng-3`, `eng-6`, `eng-19`, `eng-20`
+- CRO: `cro-1`, `cro-3`, `cro-4`, `cro-12`, `cro-18`
+- GHA: `gha-8`, `gha-9`, `gha-12`, `gha-15`, `gha-16`, `gha-17`, `gha-18`, `gha-19`, `gha-20`
+- PAN: `pan-2`, `pan-5`, `pan-6`, `pan-8`
+
+Photo-analysis seeded IDs not confidently visible on the control sheet (183);
+kept because the checklist is secondary evidence and is not a removal source:
+
+- MEX: `mex-1`, `mex-5`, `mex-6`, `mex-10`, `mex-12`
+- RSA: `rsa-1`, `rsa-3`, `rsa-4`, `rsa-9`, `rsa-11`, `rsa-12`, `rsa-14`, `rsa-15`, `rsa-16`, `rsa-17`
+- KOR: `kor-2`, `kor-5`, `kor-6`, `kor-7`, `kor-11`, `kor-16`, `kor-17`
+- CZE: `cze-5`
+- CAN: `can-2`, `can-7`, `can-10`, `can-15`
+- BIH: `bih-20`
+- QAT: `qat-4`, `qat-5`, `qat-7`, `qat-8`, `qat-10`, `qat-12`, `qat-13`, `qat-18`, `qat-20`
+- SUI: `sui-9`, `sui-11`, `sui-12`, `sui-13`, `sui-16`, `sui-19`, `sui-20`
+- BRA: `bra-1`, `bra-11`, `bra-16`, `bra-17`, `bra-20`
+- SCO: `sco-8`, `sco-11`, `sco-12`, `sco-20`
+- USA: `usa-13`
+- PAR: `par-1`, `par-8`, `par-15`, `par-16`, `par-19`, `par-20`
+- AUS: `aus-3`, `aus-6`, `aus-11`, `aus-18`
+- TUR: `tur-1`, `tur-2`, `tur-5`, `tur-6`, `tur-10`, `tur-13`
+- GER: `ger-8`, `ger-10`
+- CUW: `cuw-1`, `cuw-4`, `cuw-5`, `cuw-6`, `cuw-8`, `cuw-9`, `cuw-12`, `cuw-13`, `cuw-14`
+- CIV: `civ-5`, `civ-9`, `civ-10`, `civ-13`, `civ-14`, `civ-15`, `civ-17`
+- JPN: `jpn-1`, `jpn-11`, `jpn-16`, `jpn-19`
+- SWE: `swe-5`
+- TUN: `tun-4`, `tun-6`, `tun-8`, `tun-9`, `tun-10`, `tun-11`, `tun-12`, `tun-14`, `tun-15`, `tun-17`, `tun-18`, `tun-19`, `tun-20`
+- BEL: `bel-13`, `bel-18`
+- EGY: `egy-1`, `egy-2`, `egy-4`, `egy-5`, `egy-6`, `egy-13`, `egy-14`, `egy-20`
+- IRN: `irn-1`, `irn-8`, `irn-12`
+- NZL: `nzl-7`, `nzl-18`, `nzl-19`, `nzl-20`
+- ESP: `esp-2`, `esp-11`, `esp-13`
+- CPV: `cpv-2`, `cpv-7`
+- FRA: `fra-2`, `fra-3`, `fra-9`, `fra-11`, `fra-14`, `fra-17`
+- SEN: `sen-1`, `sen-4`, `sen-7`, `sen-10`, `sen-14`, `sen-15`, `sen-16`, `sen-17`
+- IRQ: `irq-1`, `irq-2`, `irq-5`, `irq-18`
+- JOR: `jor-4`, `jor-5`, `jor-9`, `jor-16`, `jor-18`, `jor-19`, `jor-20`
+- POR: `por-2`, `por-9`, `por-14`, `por-15`, `por-19`
+- UZB: `uzb-7`
+- COL: `col-4`, `col-6`, `col-9`, `col-10`, `col-11`, `col-13`, `col-14`, `col-16`
+- ENG: `eng-1`, `eng-12`, `eng-15`, `eng-17`
+- CRO: `cro-2`, `cro-6`, `cro-17`
+- GHA: `gha-3`, `gha-6`, `gha-7`, `gha-10`, `gha-13`
+- PAN: `pan-10`, `pan-13`, `pan-15`, `pan-17`
+
 ## Uncertain / Blocked / Needs Recheck
 
 - Several pages have strong glare or are partly covered by loose paper/advertising inserts.
@@ -1118,9 +1294,11 @@ Current totals from visible/confirmed entries listed above:
 
 | Status | Count | Notes |
 | --- | ---: | --- |
-| Placed | 299 | Confirmed sticker entries listed in `Already Placed`. |
+| Photo placed | 328 | Confirmed sticker entries listed in `Already Placed`. |
 | Left to place | 360 | Confirmed empty placeholders listed in `Left To Be Placed`, including all visible CC slots. |
-| Uncertain | 2 explicit entries | Blocked/cropped/FWC slot IDs are described in the uncertainty section instead of guessed. |
+| Control-sheet confirmed | 426 | Confident red checks listed in `Control Sheet Cross-Check - 2026-05-12`. |
+| Seeded collected total | 609 | Union of photo-placed evidence and confident control-sheet checks. |
+| Uncertain | 46 explicit entries plus FWC rows | Blocked/cropped/FWC/control-sheet low-confidence IDs are described in uncertainty sections instead of guessed. |
 
-**Image verification:** 55 JPG files are present in `./assets/album-photos/` and were included in the review scope.
+**Image verification:** 55 JPG files are present in `./assets/album-photos/` and were included in the photo review scope. One control-sheet JPEG is present in `./assets/control-sheets/`.
 **Important:** FWC and some blocked slots remain intentionally flagged for recheck instead of guessed.

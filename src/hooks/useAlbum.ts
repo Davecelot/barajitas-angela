@@ -5,28 +5,35 @@ const COLLECTED_KEY = 'barajitas-collected'
 const REPEATED_KEY = 'barajitas-repeated'
 const SEEDED_KEY = 'barajitas-seeded-v1'
 
+function seedVersion(): string {
+  const ids = [...defaultCollected].sort()
+  const hash = ids.join('|').split('').reduce((acc, char) => {
+    return ((acc << 5) - acc + char.charCodeAt(0)) >>> 0
+  }, 0)
+  return `${ids.length}-${hash.toString(36)}`
+}
+
+function parseCollected(raw: string | null): Set<string> {
+  if (!raw) return new Set()
+  const parsed: unknown = JSON.parse(raw)
+  const ids = Array.isArray(parsed) ? (parsed as unknown[]).filter((x): x is string => typeof x === 'string') : []
+  return new Set(ids)
+}
+
 function loadCollected(): Set<string> {
   try {
-    if (!localStorage.getItem(SEEDED_KEY)) {
-      const existing = localStorage.getItem(COLLECTED_KEY)
-      if (existing) {
-        // User has prior data (possibly old-format IDs) — mark seeded without overwriting
-        localStorage.setItem(SEEDED_KEY, '1')
-        const parsed: unknown = JSON.parse(existing)
-        const ids = Array.isArray(parsed) ? (parsed as unknown[]).filter((x): x is string => typeof x === 'string') : []
-        return new Set(ids)
-      }
-      // Fresh install — pre-populate from photo analysis
-      const seeded = new Set(defaultCollected)
-      localStorage.setItem(COLLECTED_KEY, JSON.stringify([...seeded]))
-      localStorage.setItem(SEEDED_KEY, '1')
+    const currentSeedVersion = seedVersion()
+    const collected = parseCollected(localStorage.getItem(COLLECTED_KEY))
+
+    if (localStorage.getItem(SEEDED_KEY) !== currentSeedVersion) {
+      // Merge new photo/control-sheet evidence without discarding user-added stickers.
+      const seeded = new Set([...collected, ...defaultCollected])
+      saveCollected(seeded)
+      localStorage.setItem(SEEDED_KEY, currentSeedVersion)
       return seeded
     }
-    const raw = localStorage.getItem(COLLECTED_KEY)
-    if (!raw) return new Set()
-    const parsed: unknown = JSON.parse(raw)
-    const ids = Array.isArray(parsed) ? (parsed as unknown[]).filter((x): x is string => typeof x === 'string') : []
-    return new Set(ids)
+
+    return collected
   } catch {
     return new Set()
   }

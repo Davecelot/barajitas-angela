@@ -16,6 +16,7 @@ evidence, generated files, and SDD work.
 | `docs/app-display-source-of-truth.md` | Canonical app display policy. |
 | `docs/album-analysis.md` | Photo-review evidence and seeded-collection analysis. |
 | `assets/album-photos/` | Raw local album photo evidence. |
+| `assets/control-sheets/` | Whole-album checklist images used as secondary collection evidence. |
 | `.sdd/active/` | Specs currently being planned or implemented. |
 | `.sdd/archive/` | Completed specs. |
 | `.ai/` | Durable AI review decisions. |
@@ -39,7 +40,8 @@ evidence, generated files, and SDD work.
 ## Move Rules
 
 - Do not move `src/` files without a dedicated SDD spec.
-- Do not delete raw album photos; move them only with path references updated.
+- Do not delete raw album photos or control-sheet evidence; move them only with
+  path references updated.
 - Keep generated artifacts ignored and out of documentation ownership.
 - When moving docs or assets, search for stale path references and update them
   in the same change.
