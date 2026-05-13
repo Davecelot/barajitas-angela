@@ -8,7 +8,11 @@
     "validate:album-data": "node scripts/validate-album-data.mjs",
     "build": "tsc -b && vite build",
     "preview": "npm run build && wrangler dev",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "security:check": "node scripts/security-check.mjs",
+    "security:deps": "node scripts/dependency-security-check.mjs",
+    "test": "node --test test/*.test.mjs",
+    "prepare": "git config core.hooksPath .githooks || true"
   },
   "dependencies": {
     "@skilly-hand/skilly-hand": "^0.26.5",

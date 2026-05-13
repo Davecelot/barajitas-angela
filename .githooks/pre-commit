@@ -1,0 +1,8 @@
+#!/bin/sh
+# pre-commit: fast security checks on staged files. Run from repository root.
+set -eu
+
+echo "[pre-commit] security:check (staged)"
+node scripts/security-check.mjs --staged
+
+echo "[pre-commit] OK"

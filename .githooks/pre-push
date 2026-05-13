@@ -1,0 +1,17 @@
+#!/bin/sh
+# pre-push: deeper checks before remote integration.
+set -eu
+
+echo "[pre-push] security:check (full tree)"
+node scripts/security-check.mjs
+
+echo "[pre-push] tests"
+npm test --silent
+
+echo "[pre-push] dependency audit"
+node scripts/dependency-security-check.mjs || {
+  echo "[pre-push] dependency audit failed. Fix advisories or use --no-verify with justification." >&2
+  exit 1
+}
+
+echo "[pre-push] OK"
