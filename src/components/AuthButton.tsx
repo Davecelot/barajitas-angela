@@ -8,7 +8,7 @@ type AuthUser = {
 type Props = {
   user: AuthUser | null
   canEdit: boolean
-  onLogin: (username: string, password: string) => Promise<boolean>
+  onLogin: (username: string, password: string) => boolean | Promise<boolean>
   onLogout: () => void
 }
 

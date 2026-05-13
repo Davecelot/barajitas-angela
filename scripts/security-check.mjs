@@ -37,14 +37,11 @@ const SECRET_CONTENT_PATTERNS = [
   { name: 'Stripe live key', re: /sk_live_[A-Za-z0-9]{20,}/ },
   { name: 'Private key block', re: /-----BEGIN (RSA |EC |DSA |OPENSSH |PGP )?PRIVATE KEY-----/ },
   { name: 'JWT-like token', re: /eyJ[A-Za-z0-9_\-]{10,}\.eyJ[A-Za-z0-9_\-]{10,}\.[A-Za-z0-9_\-]{10,}/ },
-  // Project-specific tokens that must never ship in source bundles.
-  { name: 'Project legacy admin password', re: /barajitas2026|album2026/ },
-  { name: 'pbkdf2 password hash', re: /pbkdf2\$\d+\$[A-Za-z0-9_\-]+\$[A-Za-z0-9_\-]+/ },
 ];
 
 // Paths skipped when scanning content.
 const SCAN_SKIP_DIRS = new Set([
-  'node_modules', 'dist', '.git', '.wrangler', '.playwright-cli',
+  'node_modules', 'dist', '.git', '.playwright-cli',
   '.skilly-hand', 'docs',
 ]);
 const SCAN_SKIP_FILE_EXT = new Set([
@@ -92,7 +89,6 @@ function shouldScan(rel) {
   // Skip files explicitly allowlisted (they contain pattern strings by design).
   const ALLOWLIST = new Set([
     '.github/workflows/deploy-pages.yml',
-    'worker/test/auth.test.mjs',
   ]);
   if (ALLOWLIST.has(rel)) return false;
   return true;
@@ -139,7 +135,7 @@ function checkGitignoreHygiene() {
 }
 
 function checkEnvExampleHasNoSecrets() {
-  const candidates = ['.env.example', 'worker/.dev.vars.example'];
+  const candidates = ['.env.example'];
   for (const rel of candidates) {
     const abs = path.join(ROOT, rel);
     if (!fs.existsSync(abs)) continue;

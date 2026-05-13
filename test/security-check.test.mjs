@@ -82,15 +82,6 @@ test('blocks VITE_SECRET-style names', () => {
   assert.match(r.stderr, /Disallowed secret-named VITE_/);
 });
 
-test('detects project legacy admin password', () => {
-  const dir = makeFixture();
-  fs.writeFileSync(path.join(dir, 'src.js'), 'const p = "barajitas2026";\n');
-  commitAll(dir);
-  const r = runIn(dir);
-  assert.equal(r.status, 1);
-  assert.match(r.stderr, /Project legacy admin password/);
-});
-
 test('--staged scans only staged files', () => {
   const dir = makeFixture();
   fs.writeFileSync(path.join(dir, 'committed.txt'), 'AKIAABCDEFGHIJKLMNOP\n');

@@ -20,11 +20,7 @@ export default function App() {
     incrementRepeated,
     decrementRepeated,
     repeatedCount,
-    status,
-    updatedAt,
-  } = useAlbum({ canEdit })
-  const isInitialLoad = status === 'loading' && updatedAt === null
-  const isOffline = status === 'offline'
+  } = useAlbum()
   const [query, setQuery] = useState('')
   const [tab, setTab] = useState<Tab>('todas')
   const [toast, setToast] = useState<string | null>(null)
@@ -193,16 +189,7 @@ export default function App() {
       </header>
 
       <main className="album-container flex flex-col gap-3 pb-8 pt-4">
-        {isOffline && (
-          <div className="album-panel border-[var(--album-pink)] bg-[#fff3f3] p-3 text-center text-sm font-black text-[var(--album-ink)]">
-            Sin conexión con el servidor. Mostrando últimos datos disponibles.
-          </div>
-        )}
-        {isInitialLoad ? (
-          <div className="album-panel mt-4 p-6 text-center">
-            <p className="text-lg font-black text-[var(--album-ink)]">Cargando álbum…</p>
-          </div>
-        ) : tab === 'repetidas' && repeatedCount === 0 && !query.trim() ? (
+        {tab === 'repetidas' && repeatedCount === 0 && !query.trim() ? (
           <div className="album-panel mt-4 p-6 text-center">
             <p className="text-lg font-black text-[var(--album-ink)]">Todavía no hay barajitas para cambiar.</p>
             <p className="mx-auto mt-2 max-w-sm text-sm font-semibold text-[var(--album-muted)]">

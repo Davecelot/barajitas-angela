@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Run `npm audit` for root and worker workspaces. Fails on high/critical.
+// Run `npm audit` for the root workspace. Fails on high/critical.
 
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -10,8 +10,6 @@ const LEVEL = STRICT ? 'moderate' : 'high';
 const ROOT = process.cwd();
 
 const targets = [ROOT];
-const workerDir = path.join(ROOT, 'worker');
-if (fs.existsSync(path.join(workerDir, 'package.json'))) targets.push(workerDir);
 
 let failed = false;
 for (const cwd of targets) {
