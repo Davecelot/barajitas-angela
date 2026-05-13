@@ -17,7 +17,9 @@
       "Bash(node --experimental-strip-types --test worker/test/album-validate.test.mjs)",
       "Bash(VITE_API_URL=https://placeholder.example.workers.dev npm run build)",
       "Bash(git fetch *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(git pull *)",
+      "Bash(git stash *)"
     ]
   }
 }
