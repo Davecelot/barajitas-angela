@@ -1,4 +1,16 @@
-const BASE = import.meta.env.VITE_API_URL as string | undefined
+function normalizeBase(raw: string | undefined): string | undefined {
+  if (!raw) return undefined
+  const trimmed = raw.trim().replace(/\/+$/, '')
+  if (!trimmed) return undefined
+  if (!/^https?:\/\//i.test(trimmed)) {
+    throw new Error(
+      `VITE_API_URL must include protocol (https://). Got: "${raw}"`,
+    )
+  }
+  return trimmed
+}
+
+const BASE = normalizeBase(import.meta.env.VITE_API_URL as string | undefined)
 
 const TOKEN_KEY = 'barajitas-token'
 const USER_KEY = 'barajitas-user'
