@@ -94,3 +94,15 @@ test('--staged scans only staged files', () => {
   // Tracked content scan is skipped under --staged, so it should pass.
   assert.equal(r.status, 0, r.stderr + r.stdout);
 });
+
+test('does not echo matched credential content in diagnostics', () => {
+  const dir = makeFixture();
+  const fixtureKey = 'AKIAABCDEFGHIJKLMNOP';
+  fs.writeFileSync(path.join(dir, 'leak.txt'), `const k = "${fixtureKey}";\n`);
+  commitAll(dir);
+  const r = runIn(dir);
+  assert.equal(r.status, 1);
+  assert.match(r.stderr, /AWS access key/);
+  assert.equal((r.stdout + r.stderr).includes(fixtureKey), false,
+    'Security diagnostics must identify the location without echoing credentials');
+});

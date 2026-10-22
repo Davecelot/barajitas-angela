@@ -109,7 +109,7 @@ function scanContent() {
     }
     for (const { name, re } of SECRET_CONTENT_PATTERNS) {
       const m = content.match(re);
-      if (m) blockers.push(`Secret pattern "${name}" in ${rel} (match: ${m[0].slice(0, 24)}...)`);
+      if (m) blockers.push(`Secret pattern "${name}" in ${rel}`);
     }
   }
 }

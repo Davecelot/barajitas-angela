@@ -12,7 +12,7 @@ import { useAuth } from './hooks/useAuth'
 type Tab = 'todas' | 'repetidas'
 
 export default function App() {
-  const { user, canEdit, login, logout } = useAuth()
+  const { user, canEdit, login, logout, loginAvailable } = useAuth()
   const {
     collected,
     toggle,
@@ -116,7 +116,7 @@ export default function App() {
                     onSuccess={showToast}
                     onError={showToast}
                   />
-                  <AuthButton user={user} canEdit={canEdit} onLogin={login} onLogout={logout} />
+                  <AuthButton user={user} canEdit={canEdit} onLogin={login} onLogout={logout} loginAvailable={loginAvailable} />
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ export default function App() {
                   onSuccess={showToast}
                   onError={showToast}
                 />
-                <AuthButton user={user} canEdit={canEdit} onLogin={login} onLogout={logout} />
+                <AuthButton user={user} canEdit={canEdit} onLogin={login} onLogout={logout} loginAvailable={loginAvailable} />
               </div>
               <div className="grid flex-1 grid-cols-[1fr_auto] items-center gap-3 rounded-[var(--album-radius)] border-2 border-[var(--album-line)] bg-[var(--album-surface)] px-3 py-2 md:min-w-72">
                 <div className="min-w-0">

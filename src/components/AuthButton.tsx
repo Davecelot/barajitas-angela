@@ -10,9 +10,10 @@ type Props = {
   canEdit: boolean
   onLogin: (username: string, password: string) => boolean | Promise<boolean>
   onLogout: () => void
+  loginAvailable: boolean
 }
 
-export function AuthButton({ user, canEdit, onLogin, onLogout }: Props) {
+export function AuthButton({ user, canEdit, onLogin, onLogout, loginAvailable }: Props) {
   const usernameId = useId()
   const passwordId = useId()
   const [open, setOpen] = useState(false)
@@ -61,7 +62,7 @@ export function AuthButton({ user, canEdit, onLogin, onLogout }: Props) {
 
   return (
     <div className="relative shrink-0">
-      <button type="button" onClick={() => setOpen((value) => !value)} className="album-button-secondary px-3 text-sm">
+      <button type="button" disabled={!loginAvailable} title={!loginAvailable ? 'Acceso de edición no disponible' : undefined} onClick={() => setOpen((value) => !value)} className="album-button-secondary px-3 text-sm disabled:opacity-60">
         Login
       </button>
       {open && (

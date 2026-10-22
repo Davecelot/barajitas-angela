@@ -76,7 +76,18 @@ Durable project memory for `review-rangers`. Use this file to record breaking ch
 - Avoid repeating: Do not reintroduce player-name labels into `src/data/album.ts` unless a future display-policy change explicitly reverses this convention.
 - Source: figure-code-label implementation 2026-05-13.
 
+## 2026-10-22 - Server-validated authentication and browser-local albums
+
+- Interest level: High
+- Context: Static account credentials and localStorage identity previously granted editing controls without a trusted server.
+- Decision / Insight: Require a configured trusted HTTPS API and validate its token through api/me before accepting any role. Without it, allow browsing/export only. Album collection state remains browser-local and is independent of authentication state.
+- Rationale: Public browser assets and client-controlled storage cannot establish authorization. Revision-bound token records and operation fencing prevent pending authentication from surviving logout.
+- Avoid repeating: Never bundle passwords, trust a stored user id/role or assume an absent backend exists. Enforce authorization independently on any future shared write API. Preserve collected/repeated storage during authentication changes.
+- Source: October 2026 security remediation; final independent Review Rangers HIGH with session-availability and upload-lifecycle caveats documented separately.
+
 ## Changelog
+
+- 2026-10-22: Created entry "Server-validated authentication and browser-local albums" after security review established the trusted authentication boundary and preserved local album state.
 
 - 2026-05-10: Created entry "Seed-on-first-load Pattern for localStorage Album Data" because review-rangers identified two blockers in useAlbum.ts seed logic.
 - 2026-05-10: Created entry "makeTeam 18-element Contract Unenforced" because review-rangers flagged silent truncation risk in the player array contract.
