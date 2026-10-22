@@ -10,7 +10,7 @@ npm test --silent
 
 echo "[pre-push] dependency audit"
 node scripts/dependency-security-check.mjs || {
-  echo "[pre-push] dependency audit failed. Fix advisories or use --no-verify with justification." >&2
+  echo "[pre-push] dependency audit failed. Fix advisories before pushing." >&2
   exit 1
 }
 

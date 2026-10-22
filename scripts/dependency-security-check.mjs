@@ -18,7 +18,7 @@ for (const cwd of targets) {
     continue;
   }
   console.log(`[deps] auditing ${path.relative(ROOT, cwd) || '.'} (level=${LEVEL})`);
-  const result = spawnSync('npm', ['audit', `--audit-level=${LEVEL}`, '--omit=dev'], {
+  const result = spawnSync('npm', ['audit', `--audit-level=${LEVEL}`], {
     cwd, stdio: 'inherit', encoding: 'utf8',
   });
   if (result.status !== 0) failed = true;

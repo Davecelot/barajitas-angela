@@ -29,13 +29,26 @@ collection data. This document governs display behavior built from that data.
 - The app header includes a login control aligned with the title area. Logged-out
   visitors and normal users can browse, search, and copy lists but cannot edit
   collected or repeated sticker state.
-- Authentication is performed against the Cloudflare Worker at `VITE_API_URL`
-  (POST /api/login), which validates the username/password against PBKDF2 hashes
-  stored in D1 and returns a signed JWT. The JWT is persisted in localStorage
-  and sent on subsequent requests via the `Authorization: Bearer` header.
-  Logged-out visitors and normal users can browse but cannot edit; only the
-  admin role passes the server-side `role === 'admin'` check on
-  `PUT /api/album`. There is no client-side trust boundary.
+- Authentication requires an explicitly configured HTTPS API at `VITE_API_URL`.
+  `POST /api/login` accepts `{ username, password }` and must return `{ token }`.
+  The API must validate credentials server-side and issue a signed token. The
+  frontend does not contain account passwords or password-verification hashes.
+- Before restoring a session or accepting a successful login, the frontend calls
+  `GET /api/me` with `Authorization: Bearer <token>`. The response must be
+  `{ user: { id, name, role } }`, with `role` equal to `admin` or `normal`.
+  The frontend never decodes a token or trusts a stored user identity for roles.
+  Backend requests must enforce token validity and server-side authorization.
+- The signed token is stored under `barajitas-auth-token`; the old
+  `barajitas-auth-user` identity is removed. Collection and repeated-sticker
+  browser data are preserved when authentication changes or a user logs out.
+- Without a configured HTTPS API, or when session validation fails, visitors can
+  browse, search, copy lists, and export backups but cannot use editing controls.
+  Login is unavailable until a trusted backend is configured.
+- This repository does not implement or deploy that backend. Album data currently
+  lives only in the browser through `useAlbum`; there is no implemented remote
+  `PUT /api/album` persistence. Client editing controls are a convenience for
+  this local state, not a server-side security boundary. Any future shared API
+  must independently authorize every write and validate imported data.
 - The global missing-list copy action copies missing team stickers for every
   incomplete team.
 - The repeated-list copy action appears when at least one sticker has a repeated
